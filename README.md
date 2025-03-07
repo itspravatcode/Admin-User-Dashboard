@@ -1,54 +1,27 @@
-# React + TypeScript + Vite
+# Admin User Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Admin User Dashboard is a React-based web application that provides a comprehensive dashboard experience with role-based authentication. The project includes a dashboard overview, user management, blog display, and more. It interacts with a mock API provided by [Beeceptor JSON Placeholder](https://app.beeceptor.com/mock-server/json-placeholder) and demonstrates various functionalities using modern React practices.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Dashboard Page:** Overview of application metrics and data.
+- **User Management:** View, add, and manage users.
+- **Blogs:** Display and manage blog posts.
+- **Role-Based Authentication:** Secure routes based on user roles.
+- **Protected Routes:** Pages accessible only to authenticated and authorized users.
+- **Persistent State:** Local state persistence using Zustand (integrated with local storage) to merge with API data.
+- **Responsive UI:** Designed with Ant Design (antd) for a sleek, modern look.
 
-## Expanding the ESLint configuration
+## Technologies Used
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **React:** JavaScript library for building user interfaces.
+- **Ant Design (antd):** UI framework for responsive and modern design.
+- **Zustand:** State management library for persisting and merging state.
+- **Context API:** For sharing state across the application.
+- **useReducer & useState Hooks:** For efficient state management in components.
+- **Tanstack Query:** For handling GET and POST requests.
+- **Beeceptor API:** Mock API for simulating backend interactions.
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Demo
+https://github.com/user-attachments/assets/c52aa4bc-795f-4842-aaff-a13c87ecdd35
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
