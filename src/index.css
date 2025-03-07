@@ -5,3 +5,11 @@
   color: #fff !important;
   border-color: #333 !important;
 }
+body.dark-mode {
+  background-color: #141414;
+  color: #fff;
+}
+body {
+  background-color: #fff;
+  color: #000;
+}

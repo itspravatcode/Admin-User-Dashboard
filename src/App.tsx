@@ -61,8 +61,9 @@ function App() {
   const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
-    document.body.style.backgroundColor = darkMode ? "black" : "white";
+    document.body.classList.toggle("dark-mode", darkMode);
   }, [darkMode]);
+  
 
   const toggleDarkMode = () => setDarkMode((prev) => !prev);
 
@@ -92,7 +93,7 @@ function App() {
               path="/dashboard"
               element={
                 <ProtectedRoute allowedRoles={["Admin"]}>
-                  <Dashboard darkMode={darkMode} />
+                  <Dashboard  darkMode={darkMode} />
                 </ProtectedRoute>
               }
             />
