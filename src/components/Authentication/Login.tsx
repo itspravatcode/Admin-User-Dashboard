@@ -1,7 +1,7 @@
+import React from "react";
 import { useForm, Controller } from "react-hook-form";
 import { useAuth } from "../../Contexts/AuthContext";
 import { Form, Input, Select, Button, Spin } from "antd";
-import { LoginFormInputs } from "../Types/Auth";
 import { LoadingOutlined } from "@ant-design/icons";
 
 const { Option } = Select;
@@ -14,7 +14,7 @@ const roleMapping = {
   Support: 4,
 };
 
-const Login = () => {
+const Login = ({ darkMode }) => {
   const { handleLogin, setUserRole, isLoading } = useAuth();
   const {
     control,
@@ -22,14 +22,14 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = ({ username, password, role }: LoginFormInputs) => {
+  const onSubmit = ({ username, password, role }) => {
     const selectedRoleIndex = roleMapping[role];
     setUserRole(selectedRoleIndex);
     handleLogin(username, password, selectedRoleIndex);
   };
 
   return (
-    <div style={{ maxWidth: 400, margin: "auto", padding: "20px" }}>
+    <div className={darkMode ? "dark-mode" : ""} style={{ maxWidth: 400, margin: "auto", padding: "20px" }}>
       <Spin
         spinning={isLoading}
         indicator={<LoadingOutlined spin />}

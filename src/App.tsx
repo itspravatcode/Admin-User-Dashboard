@@ -1,6 +1,7 @@
-import { Col, Row } from "antd";
-
+import React, { useState, useEffect } from "react";
+import { ConfigProvider, theme, Row, Col, Button } from "antd";
 import { Route, Routes } from "react-router";
+import { MoonOutlined, SunOutlined } from "@ant-design/icons";
 import Users from "./components/Users/Users";
 import SideBar from "./SideBar";
 import Dashboard from "./components/Dashboard";
@@ -18,13 +19,68 @@ import AddCompanyForm from "./components/Companies/AddCompanyForm";
 import EditCompanyForm from "./components/Companies/EditCompanyForm";
 import EditUserForm from "./components/Users/EditUserForm";
 import AddUserForm from "./components/Users/AddUserForm";
-import "antd/dist/reset.css";
 import LoginErrorPage from "./components/Authentication/LoginErrorPage";
+
+// Import the reset CSS if needed
+import "antd/dist/reset.css";
+
+// Animated theme toggle button component
+const AnimatedThemeToggle = ({ darkMode, toggleDarkMode }) => {
+  const [isRotating, setIsRotating] = useState(false);
+
+  const handleToggle = () => {
+    setIsRotating(true);
+    toggleDarkMode();
+    // Reset rotation after the animation duration (300ms)
+    setTimeout(() => setIsRotating(false), 300);
+  };
+
+  return (
+    <Button
+       type="text"
+      onClick={handleToggle}
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        transition: "transform 0.3s ease",
+        transform: isRotating ? "rotate(180deg)" : "rotate(0deg)",
+      }}
+    >
+      {darkMode ? (
+        <SunOutlined style={{ fontSize: 24 }} />
+      ) : (
+        <MoonOutlined style={{ fontSize: 24 }} />
+      )}
+    </Button>
+  );
+};
 
 function App() {
   const { authToken } = useAuth();
+  const [darkMode, setDarkMode] = useState(false);
+
+  useEffect(() => {
+    document.body.style.backgroundColor = darkMode ? "black" : "white";
+  }, [darkMode]);
+
+  const toggleDarkMode = () => setDarkMode((prev) => !prev);
+
   return (
-    <>
+    <ConfigProvider
+      theme={{
+        algorithm: darkMode ? theme.darkAlgorithm : theme.defaultAlgorithm,
+        token: {
+          // Adjust container background and text color tokens if necessary
+          colorBgContainer: darkMode ? "#141414" : "#fff",
+          colorText: darkMode ? "#fff" : "#000",
+        },
+      }}
+    >
+      {/* Animated toggle button aligned to the far right */}
+      <div style={{ padding: "16px", display: "flex", justifyContent: "flex-end" }}>
+        <AnimatedThemeToggle darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+      </div>
       <Row>
         <Col span={8}>
           <SideBar />
@@ -36,7 +92,7 @@ function App() {
               path="/dashboard"
               element={
                 <ProtectedRoute allowedRoles={["Admin"]}>
-                  <Dashboard />
+                  <Dashboard darkMode={darkMode} />
                 </ProtectedRoute>
               }
             />
@@ -72,22 +128,13 @@ function App() {
                 </ProtectedRoute>
               }
             />
-            <Route
-              path="/login"
-              element={!authToken ? <Login /> : <Logged />}
-            />
+            <Route path="/login" element={!authToken ? <Login  darkMode={darkMode} /> : <Logged />} />
             <Route path="/blogs" element={<Blogs />} />
             <Route
               path="/blogs/:blogID"
               element={
                 <ProtectedRoute
-                  allowedRoles={[
-                    "Manager",
-                    "Admin",
-                    "User",
-                    "Moderator",
-                    "Support",
-                  ]}
+                  allowedRoles={["Manager", "Admin", "User", "Moderator", "Support"]}
                 >
                   <BlogDetails />
                 </ProtectedRoute>
@@ -126,13 +173,12 @@ function App() {
                 </ProtectedRoute>
               }
             />
-
             <Route path="/login-error" element={<LoginErrorPage />} />
             <Route path="*" element={<>No route</>} />
           </Routes>
         </Col>
       </Row>
-    </>
+    </ConfigProvider>
   );
 }
 

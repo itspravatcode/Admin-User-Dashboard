@@ -61,7 +61,6 @@ const Users = () => {
               borderRadius: "8px",
               transition: "0.3s",
               cursor: "pointer",
-              background: "#fafafa",
               marginBottom: "8px",
               display: "flex",
               justifyContent: "space-between",

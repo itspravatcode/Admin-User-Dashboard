@@ -1,10 +1,8 @@
 import { useCompanyStore } from "../stores/companyStores";
 import { useUserStore } from "../stores/userStore";
-
 import { useEffect, useMemo } from "react";
 import { Column, Bar } from "@ant-design/plots";
 import { Card, Row, Col, Typography } from "antd";
-
 import { fetchBlogs } from "../ApiCalls/fetchBlogs";
 import { fetchCompanies } from "../ApiCalls/fetchCompanies";
 import { fetchRoles } from "../ApiCalls/fetchRoles";
@@ -13,7 +11,7 @@ import { useDashboardStore } from "../stores/dashboardStore";
 
 const { Title } = Typography;
 
-const Dashboard = () => {
+const Dashboard = ({ darkMode }) => {
   const {
     roles,
     companies: apiCompanies,
@@ -91,34 +89,59 @@ const Dashboard = () => {
     colorField: "company",
     legend: { position: "bottom" },
     tooltip: {
-      formatter: (datum: any) => ({
+      formatter: (datum) => ({
         name: datum.company,
         value: datum.employees,
       }),
     },
     height: 400,
+    theme: darkMode ? "dark" : "default",
   };
 
   return (
-    <div style={{ padding: 20 }}>
+    <div style={{ padding: 20, backgroundColor: darkMode ? "#141414" : "#fff" }}>
       <Row gutter={[16, 16]}>
         <Col span={6}>
-          <Card title="Total Roles">
+          <Card
+            title="Total Roles"
+            style={{
+              backgroundColor: darkMode ? "#141414" : "#fff",
+              color: darkMode ? "#fff" : "#000",
+            }}
+          >
             <Title level={2}>{totalRoles}</Title>
           </Card>
         </Col>
         <Col span={6}>
-          <Card title="Total Posts">
+          <Card
+            title="Total Posts"
+            style={{
+              backgroundColor: darkMode ? "#141414" : "#fff",
+              color: darkMode ? "#fff" : "#000",
+            }}
+          >
             <Title level={2}>{totalPosts}</Title>
           </Card>
         </Col>
         <Col span={6}>
-          <Card title="Total Comments">
+          <Card
+            title="Total Comments"
+            style={{
+              backgroundColor: darkMode ? "#141414" : "#fff",
+              color: darkMode ? "#fff" : "#000",
+            }}
+          >
             <Title level={2}>{totalComments}</Title>
           </Card>
         </Col>
         <Col span={6}>
-          <Card title="Total Users">
+          <Card
+            title="Total Users"
+            style={{
+              backgroundColor: darkMode ? "#141414" : "#fff",
+              color: darkMode ? "#fff" : "#000",
+            }}
+          >
             <Title level={2}>{totalUsers}</Title>
           </Card>
         </Col>
@@ -126,7 +149,13 @@ const Dashboard = () => {
 
       <Row gutter={[16, 16]} style={{ marginTop: 20 }}>
         <Col span={6}>
-          <Card title="Total Companies">
+          <Card
+            title="Total Companies"
+            style={{
+              backgroundColor: darkMode ? "#141414" : "#fff",
+              color: darkMode ? "#fff" : "#000",
+            }}
+          >
             <Title level={2}>{totalCompanies}</Title>
           </Card>
         </Col>
@@ -134,12 +163,19 @@ const Dashboard = () => {
 
       <Row gutter={[16, 16]} style={{ marginTop: 20 }}>
         <Col span={24}>
-          <Card title="Company Market Capitalization">
+          <Card
+            title="Company Market Capitalization"
+            style={{
+              backgroundColor: darkMode ? "#141414" : "#fff",
+              color: darkMode ? "#fff" : "#000",
+            }}
+          >
             <Column
               data={companyMarketCapData}
               xField="name"
               yField="marketCap"
               height={400}
+              theme={darkMode ? "dark" : "default"}
             />
           </Card>
         </Col>
@@ -147,7 +183,13 @@ const Dashboard = () => {
 
       <Row gutter={[16, 16]} style={{ marginTop: 20 }}>
         <Col span={24}>
-          <Card title="Employees per Company">
+          <Card
+            title="Employees per Company"
+            style={{
+              backgroundColor: darkMode ? "#141414" : "#fff",
+              color: darkMode ? "#fff" : "#000",
+            }}
+          >
             <Bar {...barConfig} />
           </Card>
         </Col>

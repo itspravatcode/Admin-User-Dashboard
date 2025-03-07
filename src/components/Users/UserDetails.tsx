@@ -43,7 +43,7 @@ const UserDetails = () => {
 
   return (
     <Card 
-      style={{ padding: 24, borderRadius: 10, maxWidth: 600, margin: "20px auto", background: "#fafafa" }}
+      style={{ padding: 24, borderRadius: 10, maxWidth: 600, margin: "20px auto"}}
     >
       <div style={{ textAlign: "center", marginBottom: 20 }}>
         <Avatar
