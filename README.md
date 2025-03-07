@@ -25,3 +25,7 @@ Admin User Dashboard is a React-based web application that provides a comprehens
 ## Demo
 https://github.com/user-attachments/assets/c52aa4bc-795f-4842-aaff-a13c87ecdd35
 
+## Dark Mode
+
+https://github.com/user-attachments/assets/4c6a91a0-a4cd-40cd-a010-0b2241982298
+
