@@ -72,13 +72,13 @@ function App() {
       theme={{
         algorithm: darkMode ? theme.darkAlgorithm : theme.defaultAlgorithm,
         token: {
-          // Adjust container background and text color tokens if necessary
+      
           colorBgContainer: darkMode ? "#141414" : "#fff",
           colorText: darkMode ? "#fff" : "#000",
         },
       }}
     >
-      {/* Animated toggle button aligned to the far right */}
+
       <div style={{ padding: "16px", display: "flex", justifyContent: "flex-end" }}>
         <AnimatedThemeToggle darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
       </div>
