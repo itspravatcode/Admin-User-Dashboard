@@ -21,17 +21,17 @@ import EditUserForm from "./components/Users/EditUserForm";
 import AddUserForm from "./components/Users/AddUserForm";
 import LoginErrorPage from "./components/Authentication/LoginErrorPage";
 
-// Import the reset CSS if needed
+
 import "antd/dist/reset.css";
 
-// Animated theme toggle button component
+
 const AnimatedThemeToggle = ({ darkMode, toggleDarkMode }) => {
   const [isRotating, setIsRotating] = useState(false);
 
   const handleToggle = () => {
     setIsRotating(true);
     toggleDarkMode();
-    // Reset rotation after the animation duration (300ms)
+
     setTimeout(() => setIsRotating(false), 300);
   };
 
